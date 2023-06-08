@@ -1,0 +1,768 @@
+<html>
+
+<head>
+   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+   <style>
+      .commonTable {
+         border-collapse: collapse;
+      }
+
+      .commonTable td {
+         padding: 0;
+         margin: 0;
+         font-size: 11px;
+         font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .printcolor {
+         -webkit-print-color-adjust: exact;
+         background: #ccc;
+         color-adjust: exact;
+      }
+
+      .marginLeft {
+         margin-left: 10px;
+         word-wrap: break-word;
+      }
+
+      #ItemsTable {
+         page-break-inside: auto;
+      }
+
+      tr {
+         page-break-inside: auto;
+         page-break-after: auto;
+      }
+
+      .boldFontss {
+         font-family: sans-serif;
+         font-weight: bold;
+         font-size: 14px;
+         letter-spacing: 2px;
+      }
+
+      .roundedBorder {
+         border-bottom-left-radius: 16px;
+         border-bottom-right-radius: 16px;
+         border-bottom: 1px solid black;
+      }
+   </style>
+</head>
+
+<body>
+   <section style="border: 1px solid;max-width:1024px;margin:0 auto;">
+      <div class="content">
+         <div style="display: block;">
+            <div style="float: left; width: 50%; border-right: 1px solid black;">
+               <table style="width:100%;height:113.5px; max-height: 113.5px;" class="commonTable">
+                  <tbody>
+                     <tr style="height:30%;">
+                        <td style="width:50%;padding-left: 3px;">
+                           <p class="marginLeft">Shipper's Name and Address </p>
+                           <p class="marginLeft boldFonts ">{{FromCompanyName}}</p>
+                        </td>
+                        <td style="width:50%;border-bottom: 1px solid black;border-left: 1px solid black;">
+                           <p style="text-align: left;" class="marginLeft">Shipper's Account Number</p>
+                           <p style="text-align: left;" class="boldFonts marginLeft">{{ShipperAcc}}</p>
+                        </td>
+                     </tr>
+                     <tr style="height:70%">
+                        <td colspan="2">
+                           <p class="marginLeft boldFonts ">{{FromStreetAddress1}} </p>
+                           <p class="marginLeft boldFonts ">{{FromCity}},{{FromState}},{{FromZip}},{{FromCountry}} </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table style="width:100% ;height: 108px;border-top:1px solid black" class="commonTable">
+                  <tbody>
+                     <tr style="height:30%;">
+                        <td style="width:50%;padding-left: 3px;">
+                           <p class="marginLeft">Consignee's Name and Address </p>
+                           <p class="marginLeft boldFonts ">{{ToCompanyName}} </p>
+                        </td>
+                        <td class="printcolor"
+                           style=" background: #ccc;width:50%;border-bottom: 1px solid black;border-left: 1px solid black;">
+                           <p style="text-align: left;" class="marginLeft">Consignee's Account Number</p>
+                           <p style="text-align: left;" class="boldFonts marginLeft">{{ConsigneeAcc}}</p>
+                        </td>
+                     </tr>
+                     <tr style="height:70%">
+                        <td colspan="2">
+                           <p class="marginLeft boldFonts ">{{ToStreetAddress1}} </p>
+                           <p class="marginLeft boldFonts ">{{ToCity}},{{ToState}},{{ToZip}},{{ToCountry}} </p>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table style="width:100% ;height:30px;border-top:1px solid black" class="commonTable">
+                  <tr style="height: 10px;">
+                     <td style="width:100%;" colspan="2">
+                        <p class="marginLeft">Issuing Carrier's Agent Name and City </p>
+                     </td>
+                  </tr>
+                  <tr style="height: 20px;">
+                     <td colspan="2" style="text-align: center;">
+                        <p class="marginLeft">{{AgentNameAndCity}}</p>
+                     </td>
+                  </tr>
+               </table>
+               <table style="width:100%;height: 30px ;border-top:1px solid black" class="commonTable">
+                  <tr style="height: 10px;">
+                     <td style="width:50%;border-right: 1px solid black;">
+                        <p class="marginLeft">Agent's IATA Code </p>
+                     </td>
+                     <td style="width:50%;">
+                        <p class="marginLeft">Account No.</p>
+                     </td>
+                  </tr>
+                  <tr style="height: 20px;">
+                     <td style="width:50%;border-right: 1px solid black;">
+                        <p class="marginLeft">{{AgentIATACode}}</p>
+                     </td>
+                     <td style="width:50%;">
+                        <p class="marginLeft">{{AgentAcc}}</p>
+                     </td>
+                  </tr>
+               </table>
+               <table style="width:100% ;border-top:1px solid black;height:30px;" class="commonTable">
+                  <tr style="height: 10px;">
+                     <td style="width:100%;font-size:10px;" colspan="2">
+                        <p class="marginLeft">Airports of Departure (Addr. of First Carrier) and Requested Routing </p>
+                     </td>
+                  </tr>
+                  <tr style="height: 20px;">
+                     <td>
+                        <p style="text-align: left; margin-left: 90px;">{{Airport Code}} </p>
+                     </td>
+                  </tr>
+               </table>
+               <table style="width:100%;height:31px;border-top:1px solid black" class="commonTable">
+                  <tr style="height: 10px;">
+                     <td style="width:3%; border-right: 1px solid black;font-size:9px;">
+                        <p>To</p>
+                     </td>
+                     <td style="width:35%;font-size:9px;">
+                        <p>By First Carrier</p>
+                     </td>
+                     <td class="roundedBorder"
+                        style="width:50%;border-right: 1px solid black;border-left: 1px solid black; font-size:9px;">
+                        <p>Routing And Destination</p>
+                     </td>
+                     <td style="width:3%;border-right: 1px solid black;font-size:9px;">
+                        <p>to</p>
+                     </td>
+                     <td style="width:3%;border-right: 1px solid black;font-size:9px;">
+                        <p>by</p>
+                     </td>
+                     </td>
+                     <td style="width:3%;border-right: 1px solid black;font-size:9px;">
+                        <p>to</p>
+                     </td>
+                     <td style="width:3%;font-size:9px;">
+                        <p>by</p>
+                     </td>
+                  </tr>
+                  <tr style="height:21px;">
+                     <td style="width:3%; border-right: 1px solid black;">
+                        <p>{{To1}}</p>
+                     </td>
+                     <td colspan="2" style="width:85%;border-right: 1px solid black;">
+                        <p style="text-align: center;" class="marginLeft">{{byFirstCarrier}}</p>
+                     </td>
+                     <td style="width:3%;border-right: 1px solid black;">
+                        <p>{{to2}}</p>
+                     </td>
+                     <td style="width:3%;border-right: 1px solid black;">
+                        <p>{{by1}}</p>
+                     </td>
+                     </td>
+                     <td style="width:3%;border-right: 1px solid black;">
+                        <p>{{to3}}</p>
+                     </td>
+                     <td style="width:3%;">
+                        <p>{{by2}}</p>
+                     </td>
+                  </tr>
+               </table>
+               <table style=" width:100% ;height: 42px;border-top:1px solid black;" class="commonTable">
+                  <tr>
+                     <td style="width:50%; border-right: 1px solid black;font-size: 9px;">
+                        <p class="marginLeft">Airport of Destination</p>
+                     </td>
+                     <td style="width:5%;">
+                     </td>
+                     <td colspan="2"
+                        style="font-size: 9px;width:40%;border-left:1px solid black;border-bottom:1px solid black;border-right:1px solid black;">
+                        <p style="text-align: center;">Requested Flight/Date</p>
+                     </td>
+                     <td style="width:5%;">
+                     </td>
+                  </tr>
+                  <tr>
+                     <td style="width:50%; border-right: 1px solid black; border-bottom: 1px solid black;">
+                        <p class="marginLeft">{{AirportofDestination}}</p>
+                     </td>
+                     <td style="width:5%; border-bottom: 1px solid black;">
+                     </td>
+                     <td style="width:20%; border-bottom: 1px solid black;border-right: 1px solid black;">
+                     </td>
+                     <td style="width:20%; border-bottom: 1px solid black;">
+                     </td>
+                     <td style="width:5%;border-bottom: 1px solid black; ">
+                     </td>
+                  </tr>
+               </table>
+            </div>
+            <div style="float: right; width: 50%; margin-left: -1px ;">
+               <table style="width:100%;height:113.5px;max-height:113.5px;" class="commonTable">
+                  <tr>
+                     <td style="width: 40%">
+                        <table style="width:100%" class="commonTable">
+                           <tr>
+                              <td style="width:100%;">
+                                 <p class="marginLeft">Not Negotiable </p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="width:100%; font-size:16px;">
+                                 <p class="marginLeft"><b>Air Waybill</b></p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="width:50%;">
+                                 <p class="marginLeft">Issued By</p>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="width:100%;">
+                                 <div><img class="marginLeft" style="width:85px;height: 45px;" src="data:image/jpeg;base64,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" />
+                                 </div>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td style="width:60%">
+                        <div class="bar-code BarcodeTD"><img class="BarCodeImage"
+                              style="margin:0;padding:0;width:90%;height: 60px;" src="{{BarCodeImage}}" /></div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td colspan="2" style="font-size: 10px;">
+                        <p class="marginLeft">Box 727 Memphis, TN, USA 38194-2112</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td colspan="2" style="border-top: 1px solid black;font-size: 10px;">
+                        <p class="marginLeft">Copies 1, 2 and 3 of this Air Waybill are originals and have the same
+                           validity</p>
+                     </td>
+                  </tr>
+               </table>
+               <table style="width:100%;height: 109px;" class="commonTable">
+                  <tr>
+                     <td
+                        style="width: 100%;border-top: 1px solid black;border-bottom: 1px solid black;font-size: 9px;">
+                        <p class="marginLeft">It is agreed that the goods described herein are accepted in apparent good
+                           order and condition (except as noted) for carriage SUBJECT TO THE CONDITIONS OFTHE REVERSE
+                           HEREOF.ALL GOODS MAY BE CARRIED
+                           BY ANY OTHER MEANS INCLUDING ROAD OR ANY OTHER CARRIER UNLESS SPECIFIC COUNTRY INSTRUCTIONS
+                           ARE GIVEN HEREON BY THE SHIPPER.
+                           AND SHIPPER AGRESS THAT THE SHIPMENT MAY BE CARRIED VIA INTERMEDIATE STOPPING PLACES WHICH
+                           THE CARRIER DEEMS APPROPRIATE. THE
+                           SHIPPER'S ATTENTION IS DRAWAN TO THE NOTICE CONCERING CARRIER'S LIMITATION OF LIABITLITY.
+                           Shipper may increase such limitations
+                           of liability by declining a higher value of carriage and paying a supplemental charge if
+                           required.
+                        </p>
+                     </td>
+                  </tr>
+               </table>
+               <table style="width:100%;height:65px;" class="commonTable">
+                  <tr style="height: 10px;">
+                     <td style="width: 100%;">
+                        <p class="marginLeft">Accounting Information</p>
+                     </td>
+                  </tr>
+                  <tr style="height: 53px;">
+                     <td style="width: 100%;border-bottom: 1px solid black;">
+                        <p class="marginLeft">{{accountingInformation}}</p>
+                     </td>
+                  </tr>
+               </table>
+               <table style="width: 100%;height: 30px;" class="commonTable">
+                  <tr style="height: 10px;">
+                     <td style="width: 30%;font-size: 10px;">
+                        <p class="marginLeft">Reference Number</p>
+                     </td>
+                     <td
+                        style="font-size: 10px; text-align: center; width: 40%; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;">
+                        <p class="marginLeft">Optional Shipping Information</p>
+                     </td>
+                     <td style="font-size: 10px;text-align: center;width: 30%;">
+                        <p class="marginLeft">Service Options</p>
+                     </td>
+                  </tr>
+                  <tr style="text-align: center;height:20px;">
+                     <td style="width: 30%;">
+                        <p class="marginLeft">{{References}}</p>
+                     </td>
+                     <td style="width: 40%; border-right: 1px solid black;border-left: 1px solid black;">
+                        <p style="text-align: left;">Product Type <span class="marginLeft"> {{prdt}} </span> </p>
+                     </td>
+                     <td style="width: 30%;">
+                        <p class="marginLeft">{{serviceOptions}}</p>
+                     </td>
+                  </tr>
+               </table>
+               <table style="width:100%; height:31px ;border-top:1px solid black" class="commonTable">
+                  <tr style="height: 10px;">
+                     <td style="width: 8%;border-right: 1px solid black;font-size:9px;">
+                        <p>Currency</p>
+                     </td>
+                     <td class="printcolor" style="width: 4%; border-left: 1px solid black;font-size:9px;">
+                        <p>CHGS Code</p>
+                     </td>
+                     <td colspan="2" style="width: 14%; border-left: 1px solid black;border-bottom: 1px solid black;font-size:9px;">
+                        <p>WT / VAL</p>
+                     </td>
+                     <td colspan="2" style="width: 14%;border-left: 1px solid black;border-bottom: 1px solid black;font-size:9px;">
+                        <p>Other</p>
+                     </td>
+                     <td style="width: 30%; border-left: 1px solid black;font-size:9px;">
+                        <p>Declared Value for Carriage</p>
+                     </td>
+                     <td style="width: 30%; border-left: 1px solid black;font-size:9px;">
+                        <p>Declared Value for Customs</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td style="width: 8%;border-right: 1px solid black;font-size:9px;">
+                        <p>{{cur}}</p>
+                     </td>
+                     <td class="printcolor" style="width: 4%; border-left: 1px solid black;font-size:9px;">
+                        <p>{{cd}}</p>
+                     </td>
+                     <td style="width: 7%; border-left: 1px solid black;font-size:9px;">
+                        <p>PPD</p>
+                     </td>
+                     <td style="width: 7%; border-left: 1px solid black;font-size:9px;">
+                        <p>COLL</p>
+                     </td>
+                     <td style="width: 7%; border-left: 1px solid black;font-size:9px;">
+                        <p>PPD</p>
+                     </td>
+                     <td style="width: 7%; border-left: 1px solid black;font-size:9px;">
+                        <p>COLL</p>
+                     </td>
+                     <td style="width: 30%; border-left: 1px solid black;font-size:9px;">
+                        <p>{{dvg}}</p>
+                     </td>
+                     <td style="width: 30%; border-left: 1px solid black;">
+                        <p>{{dvc}}</p>
+                     </td>
+                  </tr>
+               </table>
+               <table
+                  style="margin-left: 2px;width: 99.5%;border-top: 1px solid black; height: 42px;border-bottom: 1px solid black;"
+                  class="commonTable">
+                  <tr>
+                     <td class="printcolor" style="width: 35%; border-right: 1px solid black;font-size: 9px;">
+                        <p style="margin-left: 3px;font-size: 9px;">Amount of Insurrance</p>
+                        <p class="marginLeft">{{insAmount}}</p>
+                     </td>
+                     <td class="printcolor" style="width:65%;">
+                        <p style="font-size: 9px;" class="marginLeft"> INSURANCE - If carrier offers insurance and such
+                           insurance is requested in accordance
+                           with the conditions thereof, indicate amount to be insured in figures in box marked "Amount
+                           of Insurance"
+                        </p>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div style="border-bottom: 1px solid black;">
+         <table style="width: 100%;" class="commonTable">
+            <tr>
+               <td style="width:100%" colspan="2">
+                  <table style=" width:100% ;" class="commonTable">
+                     <tr style="height:50px;">
+                        <td style="width:100%;" colspan="2">
+                           <p class="marginLeft">Handling Information</p>
+                           <p class="marginLeft">{{HandlingInformation}}</p>
+                        </td>
+                     </tr>
+                     <tr style="height:30px;">
+                        <td style="width:85%;">
+                           <p class="marginLeft" style="font-size: smaller;">These commodities, technology or software
+                              were exported from the
+                              United States in accordance with the Export Administration Regulations. Diversion contrary
+                              to U.S Law prohibited.
+                           </p>
+                        </td>
+                        <td
+                           style="width:15%; text-align: center; border-left: 1px solid black; border-top: 1px solid black; padding-bottom: 30px;">
+                           <p>SCI</p>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <table id="ItemsTable" class="commonTable">
+         <tbody>
+            <tr>
+               <td rowspan="2"
+                  style="border-right: 1px solid black; border-bottom: 1px solid black;  text-align: center; width: 5%; ">
+                  No. of pieces RCP</td>
+               <td rowspan="2"
+                  style="border-right: 1px solid black; border-bottom: 1px solid black;text-align: center; width: 10%; ">
+                  Gross Weight</td>
+               <td style="border-right: 1px solid ; text-align: center; width: 1%; ">
+                  kg</td>
+               <td rowspan="2" class="printcolor"
+                  style="border-right: 1px solid black;text-align: center; width: 1%;background-color: #ccc; ">
+               </td>
+               <td rowspan="2" style="width: 1%; "></td>
+               <td
+                  style="border-right: 1px solid black; width: 10%; text-align: center;border-bottom: 1px solid black; ">
+                  Rate class
+               </td>
+               <td rowspan="2" class="printcolor" style="border-right: 1px solid black;  width: 1%; ">
+               </td>
+               <td rowspan="2"
+                  style="border-right: 1px solid black;border-bottom: 1px solid black; width: 8%; text-align: center; ">
+                  Chargeable weight</td>
+               <td rowspan="2" class="printcolor"
+                  style="border-right: 1px solid black;  width: 1%;background-color: #ccc; ">
+               </td>
+               <td rowspan="2"
+                  style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; width: 8%; ">
+                  Rate / Charge</td>
+               <td rowspan="2"
+                  style="border-right: 1px solid black; text-align: center;border-bottom: 1px solid black;  width: 15%;margin-left: 100px; ">
+                  Total
+               </td>
+               <td rowspan="2" class="printcolor"
+                  style="border-right: 1px solid black; width: 1%;background-color: #ccc; ">
+               </td>
+               <td rowspan="2"
+                  style=" width: 20%;margin-left: 100px; text-align: center; border-bottom: 1px solid black;">
+                  Nature and Quantity of goods <br> (incl. Dimensions or Volume)
+               </td>
+            </tr>
+            <tr>
+               <td style="border-right: 1px solid black; text-align: center;">
+                  lb
+               </td>
+               <td
+                  style="border-right: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black; text-align: center;">
+                  Commodity Item No.
+               </td>
+            </tr>
+            <tr>
+               <td style="border-right: 1px solid black; text-align: center; width: 5%; "> 1</td>
+               <td style="border-right: 1px solid black; text-align: center; width: 10%; ">
+               </td>
+               <td style="border-right: 1px solid ; text-align: center; width: 1%; ">
+               </td>
+               <td class="printcolor"
+                  style="border-right: 1px solid black;text-align: center; width: 1%;background-color: #ccc; ">
+               </td>
+               <td style="width: 1%; "></td>
+               <td style="border-right: 1px solid black;border-left: 1px solid black; width: 10%; text-align: center; ">
+               </td>
+               <td class="printcolor" style="border-right: 1px solid black;  width: 1%; ">
+               </td>
+               <td style="border-right: 1px solid black; width: 8%; text-align: center; ">
+               </td>
+               <td class="printcolor" style="border-right: 1px solid black;  width: 1%;background-color: #ccc; ">
+               </td>
+               <td style="border-right: 1px solid black;  text-align: center; width: 8%; ">
+               </td>
+               <td style="border-right: 1px solid black; text-align: center;  width: 15%;margin-left: 100px; ">
+               </td>
+               <td class="printcolor" style="border-right: 1px solid black; width: 1%;background-color: #ccc; ">
+               </td>
+               <td style=" width: 20%;margin-left: 100px; text-align: center; ">
+               </td>
+            </tr>
+         </tbody>
+         {{ItemsTable}}
+         <tfoot>
+            <tr>
+               <td style="border-right: 1px solid black; text-align: center; width: 5%;border-top: 1px solid black; "><p class="marginLeft">{{TNo}}</p></td>
+               <td style="border-right: 1px solid black; text-align: center; width: 10%;border-top: 1px solid black; "><p class="marginLeft">{{GWeight}}</p>
+               </td>
+               <td style="border-right: 1px solid ; text-align: center; width: 1%; ">
+               </td>
+               <td class="printcolor"
+                  style="border-right: 1px solid black;text-align: center; width: 1%;background-color: #ccc; ">
+               </td>
+               <td style="width: 1%; "></td>
+               <td style="border-right: 1px solid black;border-left: 1px solid black; width: 10%; text-align: center; ">
+               </td>
+               <td class="printcolor" style="border-right: 1px solid black;  width: 1%; ">
+               </td>
+               <td style="border-right: 1px solid black; width: 8%; text-align: center; ">
+               </td>
+               <td class="printcolor" style="border-right: 1px solid black;  width: 1%;background-color: #ccc; ">
+               </td>
+               <td style="border-right: 1px solid black;  text-align: center; width: 8%; ">
+               </td>
+               <td style="border-right: 1px solid black;border-top: 1px solid black; text-align: center;  width: 15%;margin-left: 100px; ">
+                  {{Total}}
+               </td>
+               <td class="printcolor" style="border-right: 1px solid black; width: 1%;background-color: #ccc; ">
+               </td>
+               <td style=" width: 20%;margin-left: 100px; text-align: center; ">
+               </td>
+            </tr>
+         </tfoot>
+      </table>
+      <table style="width:100%;border-top: 1px solid black;" class="commonTable">
+         <tr>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               <p class="marginLeft">Prepaid</p>
+            </td>
+            <td colspan="4"
+               style=" text-align: center; width:20% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               Weight Charge
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black; border-bottom: 1px solid black;">
+               <p class="marginLeft">Collect</p>
+            </td>
+            <td rowspan="6" colspan="2"
+               style="width:60% !important; border-bottom: 1px solid black; text-align: left; vertical-align: top;">
+               <p class="marginLeft">Other Charges</p>
+               <p class="marginLeft">{{OtherCharges}}</p>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" style="width:10% !important;border-bottom: 1px solid black;">
+               <p class="marginLeft">{{Prepaid}}</p>
+            </td>
+            <td colspan="2"
+               style=" text-align: center; width:12.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style=" text-align: center; width:7.75% !important;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black; border-bottom: 1px solid black;">
+               <p class="marginLeft"></p>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black;">
+            </td>
+            <td colspan="4"
+               style=" text-align: center; width:20% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               Valuation Charge
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black;">
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" style="width:10% !important;border-bottom: 1px solid black;">
+               <p class="marginLeft">{{valcharge}}</p>
+            </td>
+            <td colspan="2"
+               style=" text-align: center; width:12.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style=" text-align: center; width:7.75% !important;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black; border-bottom: 1px solid black;">
+               <p class="marginLeft"></p>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black;">
+            </td>
+            <td colspan="4"
+               style=" text-align: center; width:20% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               Tax
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black; ">
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" style="width:10% !important;border-bottom: 1px solid black;">
+               <p class="marginLeft">{{Tax}}</p>
+            </td>
+            <td colspan="2"
+               style=" text-align: center; width:12.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style=" text-align: center; width:7.75% !important;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black; border-bottom: 1px solid black;">
+               <p class="marginLeft"></p>
+            </td>
+         </tr>
+         <tr>
+            <td style="width:5% !important;border-right: 1px solid black;">
+            </td>
+            <td colspan="6"
+               style=" text-align: center; width:30% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               Total Other Charges Due Agent
+            </td>
+            <td style="width:5% !important;border-right: 1px solid black;">
+            </td>
+            <td rowspan="3" colspan="2" style="width:60% !important;text-align: left; vertical-align: top; font-size: 11px;">
+               <p class="marginLeft">Shipper certifies that the particulars on the face hereof are correct and insofar
+                  as any part of the consignment contains
+                  dangerous goods, such part is properly described by name and is in proper condition for carriage by
+                  air according to the applicable Dangerous Goods
+                  Regulations.
+               </p>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" style="width:10% !important;border-bottom: 1px solid black;">
+               <p class="marginLeft">{{OTCA}}</p>
+            </td>
+            <td colspan="2"
+               style=" text-align: center; width:12.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style=" text-align: center; width:7.75% !important;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black; border-bottom: 1px solid black;">
+               <p class="marginLeft"></p>
+            </td>
+         </tr>
+         <tr>
+            <td style="width:5% !important;border-right: 1px solid black;">
+            </td>
+            <td colspan="6"
+               style=" text-align: center; width:30% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               Total Other Charges Due Carrier
+            </td>
+            <td style="width:5% !important;border-right: 1px solid black;">
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" style="width:10% !important;border-bottom: 1px solid black;">
+               <p class="marginLeft">{{OTCC}}</p>
+            </td>
+            <td colspan="2"
+               style=" text-align: center; width:12.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style=" text-align: center; width:7.75% !important;border-bottom: 1px solid black;">
+            </td>
+            <td colspan="2" style="width:10% !important;border-right: 1px solid black; border-bottom: 1px solid black;">
+               <p class="marginLeft"></p>
+            </td>
+         </tr>
+         <tr style="height: 5px;">
+            <td class="printcolor" colspan="2" style="width:10% !important;">
+            </td>
+            <td class="printcolor" colspan="2"
+               style=" text-align: center; width:12.25% !important;border-right: 1px solid black;">
+            </td>
+            <td class="printcolor" colspan="2" style=" text-align: center; width:7.75% !important;">
+            </td>
+            <td class="printcolor" colspan="2" style="width:10% !important;border-right: 1px solid black;">
+               <p class="marginLeft"></p>
+            </td>
+            <td colspan="2" style="width:60% !important; text-align: left; vertical-align: top; font-size: 11px;">
+            </td>
+         </tr>
+         <tr style="height: 20px;">
+            <td class="printcolor" colspan="2" style="width:10% !important;border-bottom: 1px solid black;">
+            </td>
+            <td class="printcolor" colspan="2"
+               style=" text-align: center; width:12.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+            </td>
+            <td class="printcolor" colspan="2"
+               style=" text-align: center; width:7.75% !important;border-bottom: 1px solid black;">
+            </td>
+            <td class="printcolor" colspan="2"
+               style="width:10% !important;border-right: 1px solid black; border-bottom: 1px solid black;">
+               <p class="marginLeft"></p>
+            </td>
+            <td colspan="2" style="width:60% !important; text-align: left;  font-size: 11px; border-bottom: 1px solid black;">
+               <p style="text-align: center;vertical-align: bottom;">
+                  ----------------------------------------------------------------------------</p>
+               <p style="text-align: center;vertical-align: bottom;"> Signature of Shipper or his Agent</p>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="4"
+               style=" text-align: center; width:22.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               Total Prepaid
+            </td>
+            <td colspan="4"
+               style=" text-align: center; width:17.75% !important;border-bottom: 1px solid black;border-right: 1px solid black;">
+               Total Collect
+            </td>
+            <td colspan="2" rowspan="3" style="width:60% !important; text-align: left;  font-size: 11px;">
+            </td>
+         </tr>
+         <tr>
+            <td colspan="4"
+               style=" text-align: center; width:22.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               {{TotalPrepaid}}
+            </td>
+            <td colspan="4"
+               style=" text-align: center; width:17.75% !important;border-bottom: 1px solid black;border-right: 1px solid black;">
+               {{Total Collect}}
+            </td>
+         </tr>
+         <tr>
+            <td class="printcolor" colspan="4"
+               style=" text-align: center; width:22.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               Currency Conversion Rates
+            </td>
+            <td class="printcolor" colspan="4"
+               style=" text-align: center; width:17.75% !important;border-bottom: 1px solid black;border-right: 1px solid black;">
+               CC Charges in Dest. Currency
+            </td>
+         </tr>
+         <tr>
+            <td class="printcolor" colspan="4"
+               style=" text-align: center; width:22.25% !important;border-right: 1px solid black;border-bottom: 1px solid black;">
+               {{TotalPrepaid}}
+            </td>
+            <td class="printcolor" colspan="4"
+               style=" text-align: center; width:17.75% !important;border-bottom: 1px solid black;border-right: 1px solid black;">
+               {{Total Collect}}
+            </td>
+            <td style="border-top: dashed;">               
+               <p style="margin: 0;" class="marginLeft">Executed on date</p>
+            </td>
+            <td style="border-top: dashed;display: flex; justify-content: space-between;margin: 0; ">               
+               <p style="margin: 0;" class="marginLeft">at place</p>
+               <p style="margin: 0;" class="marginLeft">Signature of issuing Carrier of its Agent</p>
+            </td>
+         </tr>
+         <tr>
+            <td class="printcolor" colspan="4" rowspan="2"
+               style=" text-align: center; width:22.25% !important;border-right: 1px solid black;">
+               For Carriers Use Only
+            </td>
+            <td colspan="4" class="printcolor"
+               style=" text-align: center; width:17.75% !important;border-bottom: 1px solid black;border-right: 1px solid black;">
+               Charges at Destination
+            </td>
+            <td class="printcolor" style="width:30% !important; text-align: left;  font-size: 11px;border-bottom: 1px solid black;border-top: 1px solid black;">
+               <p class="marginLeft">Total Collect Charges</p>
+            </td>
+            <td rowspan="2" style="width:30% !important; text-align: left;  font-size: 11px;border-top: 1px solid black;border-left: 1px solid black;">
+               <p style="text-align: center;">{{INVNumber}}</p>
+            </td>
+         </tr>
+         <tr>           
+            <td colspan="4" class="printcolor"
+               style=" text-align: center; width:17.75% !important;border-right: 1px solid black;">
+               Charges at Destination
+            </td>
+            <td class="printcolor" style="width:30% !important; text-align: left;  font-size: 11px;border-top: 1px solid black;">
+               <p class="marginLeft">{{TotalCollectCharges}}</p>
+            </td>            
+         </tr>
+      </table>      
+   </section>
+</body>
+
+</html>
